@@ -46,4 +46,4 @@ There are two things you can do:
 
 - Or submit an issue here
 
-[![](https://github.com/ZechBron/EazyGit/issues/new)]()
+[![Issues](https://github.com/ZechBron/EazyGit/issues/new)](https://github.com/ZechBron/EazyGit/issues/new)
