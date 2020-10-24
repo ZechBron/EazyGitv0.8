@@ -45,3 +45,5 @@ There are two things you can do:
 - Email me here zech@mbox.re
 
 - Or submit an issue here
+
+[![](https://github.com/ZechBron/EazyGit/issues/new)]()
