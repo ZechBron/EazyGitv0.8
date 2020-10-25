@@ -1,0 +1,51 @@
+#!/bin/bash
+chmod +x setup
+chmod +x eazygit
+
+echo -e "\e[92mPlease Choose: "
+echo -e " 1. Termux\n 2. Other\e[0m"
+read zCh
+
+if [ $zCh = 1 ]; then
+   cp -R eazygit $PREFIX/bin
+   chmod +x $PREFIX/bin/eazygit
+   eazygit
+   if [ $? = 0 ]; then
+      clear
+      echo -e "\e[92mSuccessful\e[0m"
+   elif [ $? = 1 ]; then
+      echo -e "\e[91mFailed\e[0m"
+   fi
+
+elif [ $zCh = 2 ]; then
+   cp -R eazygit /usr/bin
+   cp -R eazygit /bin
+   chmod +x /usr/bin/eazygit
+   chmod +x /bin/eazygit
+   eazygit
+   if [ $? = 0 ]; then
+      clear
+      echo -e "\e[92mSuccessful\e[0m"
+   elif [ $? = 1 ]; then
+      sudo cp -R eazygit /usr/bin
+      sudo cp -R eazygit /bin
+      sudo chmod +x usr/bin/eazygit
+      sudo chmod +x /bin/eazygit
+      eazygit
+      if [ $? = 0 ]; then
+         clear
+         echo -e "\e[92mDone\e[0m"
+      elif [ $? = 1 ]; then
+         echo -e "\e[91mUnknown Error\e[0m"
+      fi
+   else
+      echo -e "\e[91mUnknown Error\e[0m"
+   fi
+else
+   echo -e "\e[91mWrong input.\e[0m"
+fi
+
+
+
+
+
