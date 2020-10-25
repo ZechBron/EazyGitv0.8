@@ -1,0 +1,100 @@
+#!/bin/bash
+
+###				###
+#	EazyGit Version 0.4	  #
+#    Created By: Zech Bron #
+###				###
+
+#	$1  $2  $3  $4   $5  $6
+#eazygit -c file -h commit -b url
+#eazygit -c file -z -b    url
+#eazygit -n name -e email
+#eazygit -? || --help
+#eazygit -i || --info
+#eazygit -u || --update
+
+if [ "$1" == "-u" ] || [ "$1" == "--update" ]; then
+cd $HOME
+rm -rf EazyGit
+rm -rf $PREFIX/bin/eazygit
+git clone https://github.com/ZechBron/EazyGit
+echo "Please type this one line command:"
+echo " cd EazyGit && bash setup"
+fi
+
+if [ "$1" == "-i" ] || [ "$1" == "--info" ]; then
+echo -e "Tool Name: EazyGit"
+echo -e "Version: 0.4"
+echo -e "Description:"
+echo -e "  Stop typing long commands. Upload file in your github repo by just 1 to two commands."
+echo -e "Author: Zech"
+echo -e "GitHub: https://github.com/ZechBron"
+echo -e "Email: zech@mbox.re"
+echo -e "\nMessage To Users: "
+echo -e " First of all, thank you for using this tool guyz. You know I am a noob. I am still a begineer so if you encounter an error, please send me an email about it.\n If you are a programmer like me, you know I am always open for ideas. So if you have any suggestions, just tell me."
+fi
+
+if [ "$1" == "-?" ] || [ "$1" == "--help" ]; then
+echo -e "USAGE:\n"
+echo -e "Setup:"
+echo -e " eazygit -n username -e email\n"
+echo -e "Usage with commit message: "
+echo -e "  eazygit -c filename -h commit message -b url\n"
+echo -e "Usage with default commit message: "
+echo -e "  eazygit -c filename -z -b url\n"
+echo -e "Instructions:"
+echo -e " Use proper order."
+echo -e " When using default commit '-z' do not add other stuff"
+
+echo -e "\nOptions:"
+echo -e " -n \t\t github username"
+echo -e " -e \t\t github email"
+echo -e " -c \t\t filename"
+echo -e " -h \t\t commit message"
+echo -e " -z \t\t default commit message"
+echo -e " -b \t\t github url repository"
+echo -e " -? or --help \t display help message"
+echo -e " -i or --info \t display information"
+echo -e " -u or --update\t update eazygit"
+fi
+
+# Setup
+if [ "$1" == "-n" ]; then
+   git config --global user.name $2
+if [ "$3" == "-e" ]; then
+   git config --global user.email $4
+fi
+fi
+
+if [ "$1" == "-c" ]; then
+   git init
+   git add $2
+
+   if [ "$3" == "-h" ]; then
+      git commit -m "$4"
+      git branch -M main
+   if [ "$5" == "-b" ]; then
+      git remote add origin $6
+   fi
+   fi
+
+   if [ "$3" == "-z" ]; then
+      git commit -m "Inital commit"
+      git branch -M main
+   if [ "$4" = "-b" ]; then
+      git remote add origin $5
+   fi
+   fi
+git push -u origin main
+fi
+if [ -z "$1" ]; then
+echo -e "Basic Usage\n"
+echo -e "Setup this first:"
+echo -e "\teazygit -n username -e email\n"
+echo -e "With Commit Message:"
+echo -e "\teazygit -c file -h commit -b url\n"
+echo -e "With Default Commit Message:"
+echo -e "\teazygit -c file -z -b url\n"
+echo -e "For more info type:"
+echo -e "\teazygit -? or eazygit --help"
+fi
