@@ -1,33 +1,51 @@
 #!/bin/bash
 
 ###				###
-#	EazyGit Version 0.4	  #
-#    Created By: Zech Bron #
+#	EazyGit Version 0.7	  #
+#      Created By: Zech Bron 	  #
+#   https://github.com/ZechBron   #
 ###				###
 
-#	$1  $2  $3  $4   $5  $6
-#eazygit -c file -h commit -b url
-#eazygit -c file -z -b    url
-#eazygit -n name -e email
-#eazygit -? || --help
-#eazygit -i || --info
-#eazygit -u || --update
+# eazygit -c file -h commit -b url
+# eazygit -c file -z -b    url
+# eazygit -n name -e email
+# eazygit -? || --help
+# eazygit -i || --info
+# eazygit -u || --update
 
 if [ "$1" == "-u" ] || [ "$1" == "--update" ]; then
-cd $HOME
-rm -rf EazyGit
-rm -rf $PREFIX/bin/eazygit
-git clone https://github.com/ZechBron/EazyGit
-echo "Please type this one line command:"
-echo " cd EazyGit && bash setup"
+   cd $HOME
+   rm -rf EazyGit
+   echo -e "\e[92mPlease Choose:"
+   echo -e " 1. Termux\n 2. Other\e[0m"
+   read zCh
+   if [ $zCh = 1 ]; then
+      rm -rf $PREFIX/bin/eazygit
+   elif [ $zCh = 2 ]; then
+      rm -rf /bin/eazygit
+      rm -rf /usr/bin/eazygit
+      eazygit
+      if [ $? = 0 ]; then
+         clear
+         echo -e "\e[92mSuccessful\e[0m"
+      elif [ $? = 1 ]; then
+         sudo rm -rf /bin/eazygit
+         sudo rm -rf /usr/bin/eazygit
+      fi
+   else
+      echo -e "\e[91mWrong input\e[0m"
+   fi
+   git clone https://github.com/ZechBron/EazyGit
+   echo "Please type this one line command:"
+   echo " cd EazyGit && bash setup"
 fi
 
 if [ "$1" == "-i" ] || [ "$1" == "--info" ]; then
 echo -e "Tool Name: EazyGit"
-echo -e "Version: 0.4"
+echo -e "Version: 0.7"
 echo -e "Description:"
-echo -e "  Stop typing long commands. Upload file in your github repo by just 1 to two commands."
-echo -e "Author: Zech"
+echo -e "  Stop typing long commands.\n Upload file in your github repo by just 1 to two commands."
+echo -e "Author: Zech Bron"
 echo -e "GitHub: https://github.com/ZechBron"
 echo -e "Email: zech@mbox.re"
 echo -e "\nMessage To Users: "
@@ -61,32 +79,41 @@ fi
 # Setup
 if [ "$1" == "-n" ]; then
    git config --global user.name $2
-if [ "$3" == "-e" ]; then
-   git config --global user.email $4
-fi
+   if [ "$3" == "-e" ]; then
+      git config --global user.email $4
+   fi
 fi
 
 if [ "$1" == "-c" ]; then
    git init
-   git add $2
 
-   if [ "$3" == "-h" ]; then
-      git commit -m "$4"
-      git branch -M main
-   if [ "$5" == "-b" ]; then
-      git remote add origin $6
-   fi
-   fi
+   # If file exist
+   if [ -e "$2" ]; then
+      git add $2
 
-   if [ "$3" == "-z" ]; then
-      git commit -m "Inital commit"
-      git branch -M main
-   if [ "$4" = "-b" ]; then
-      git remote add origin $5
+      if [ "$3" == "-h" ]; then
+         git commit -m "$4"
+         git branch -M main
+         if [ "$5" == "-b" ]; then
+            git remote add origin $6
+         fi
+      fi
+
+      if [ "$3" == "-z" ]; then
+         git commit -m "Inital commit"
+         git branch -M main
+         if [ "$4" = "-b" ]; then
+            git remote add origin $5
+         fi
+      fi
+      git push -u origin main
+
+   # If file not exist
+   elif [ ! -e "$2" ]; then
+      echo -e "\e[91m$2 file does not exist\e[0m"
    fi
-   fi
-git push -u origin main
 fi
+
 if [ -z "$1" ]; then
 echo -e "Basic Usage\n"
 echo -e "Setup this first:"
