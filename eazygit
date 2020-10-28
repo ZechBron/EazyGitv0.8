@@ -100,7 +100,7 @@ if [ "$1" == "-c" ]; then
       fi
 
       if [ "$3" == "-z" ]; then
-         git commit -m "Inital commit"
+         git commit -m "Initial commit"
          git branch -M main
          if [ "$4" = "-b" ]; then
             git remote add origin $5
