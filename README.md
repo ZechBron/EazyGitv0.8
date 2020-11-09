@@ -1,4 +1,4 @@
-# Eazy Git [![EazyGit Version](https://img.shields.io/badge/version-0.7-blue)](https://github.com/ZechBron)
+# Eazy Git [![EazyGit Version](https://img.shields.io/badge/version-0.8-blue)](https://github.com/ZechBron)
 
 Upload a file in your repo using terminal without typing long commands.
 
