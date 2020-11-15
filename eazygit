@@ -1,7 +1,7 @@
 #!/bin/bash
 
 ###				###
-#	EazyGit Version 0.7	  #
+#	EazyGit Version 0.8	  #
 #      Created By: Zech Bron 	  #
 #   https://github.com/ZechBron   #
 ###				###
@@ -22,15 +22,15 @@ if [ "$1" == "-u" ] || [ "$1" == "--update" ]; then
    if [ $zCh = 1 ]; then
       rm -rf $PREFIX/bin/eazygit
    elif [ $zCh = 2 ]; then
-      rm -rf /bin/eazygit
-      rm -rf /usr/bin/eazygit
+      sudo rm -rf /bin/eazygit
+      sudo rm -rf /usr/bin/eazygit
       eazygit
       if [ $? = 0 ]; then
          clear
          echo -e "\e[92mSuccessful\e[0m"
       elif [ $? = 1 ]; then
-         sudo rm -rf /bin/eazygit
-         sudo rm -rf /usr/bin/eazygit
+         clear
+         echo -e "\e[91mUnknown Error\e[0m"
       fi
    else
       echo -e "\e[91mWrong input\e[0m"
@@ -42,7 +42,7 @@ fi
 
 if [ "$1" == "-i" ] || [ "$1" == "--info" ]; then
 echo -e "Tool Name: EazyGit"
-echo -e "Version: 0.7"
+echo -e "Version: 0.8"
 echo -e "Description:"
 echo -e "  Stop typing long commands.\n Upload file in your github repo by just 1 to two commands."
 echo -e "Author: Zech Bron"
@@ -78,6 +78,7 @@ fi
 
 # Setup
 if [ "$1" == "-n" ]; then
+   rm -rf .gitconfig
    git config --global user.name $2
    if [ "$3" == "-e" ]; then
       git config --global user.email $4
@@ -85,10 +86,10 @@ if [ "$1" == "-n" ]; then
 fi
 
 if [ "$1" == "-c" ]; then
-   git init
 
    # If file exist
    if [ -e "$2" ]; then
+      git init
       git add $2
 
       if [ "$3" == "-h" ]; then
@@ -125,3 +126,4 @@ echo -e "\teazygit -c file -z -b url\n"
 echo -e "For more info type:"
 echo -e "\teazygit -? or eazygit --help"
 fi
+
