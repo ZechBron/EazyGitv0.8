@@ -1,6 +1,6 @@
 # Eazy Git [![EazyGit Version](https://img.shields.io/badge/version-0.8-blue)](https://github.com/ZechBron)
 
-Upload a file in your repo using terminal without typing long commands.
+Upload files in your repo using one command only.
 
 ## Installation:
 
