@@ -47,3 +47,8 @@ There are two things you can do:
 - Or submit an issue here
 
 ![Issues](https://github.com/ZechBron/EazyGit/issues/new)
+
+---
+
+__Future Updates__
+Version 0.9 -> Compatability
